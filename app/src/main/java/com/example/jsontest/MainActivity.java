@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements ExampleAdapter.On
         parseJSON();
     }
     private void parseJSON() {
-        String url = "https://pixabay.com/api/?key=5303976-fd6581ad4ac165d1b75cc15b3&q=kitten&image_type=photo&pretty=true";
+        String url = "http://169.254.46.33/practice/get_data.php";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
