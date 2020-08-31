@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements ExampleAdapter.On
         parseJSON();
     }
     private void parseJSON() {
-        String url = "http://169.254.46.33/practice/get_data.php";
+        String url = "https://www.lscm.lv/pvs_system/pvs_soft/get_data_geomat.php";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
