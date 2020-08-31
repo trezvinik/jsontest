@@ -24,13 +24,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements ExampleAdapter.OnItemClickListener {
-    public static final String EXTRA_URL = "imageUrl";
     public static final String EXTRA_CREATOR = "creatorName";
     public static final String EXTRA_LIKES = "likeCount";
     private RecyclerView mRecyclerView;
     private ExampleAdapter mExampleAdapter;
     private ArrayList<ExampleItem> mExampleList;
     private RequestQueue mRequestQueue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements ExampleAdapter.On
         mRequestQueue = Volley.newRequestQueue(this);
         parseJSON();
     }
+
     private void parseJSON() {
         String url = "https://www.lscm.lv/pvs_system/pvs_soft/get_data_geomat.php";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -53,9 +54,8 @@ public class MainActivity extends AppCompatActivity implements ExampleAdapter.On
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject hit = jsonArray.getJSONObject(i);
                                 String creatorName = hit.getString("user");
-                                String imageUrl = hit.getString("webformatURL");
                                 int likeCount = hit.getInt("likes");
-                                mExampleList.add(new ExampleItem(imageUrl, creatorName, likeCount));
+                                mExampleList.add(new ExampleItem(creatorName, likeCount));
                             }
                             mExampleAdapter = new ExampleAdapter(MainActivity.this, mExampleList);
                             mRecyclerView.setAdapter(mExampleAdapter);
@@ -72,11 +72,11 @@ public class MainActivity extends AppCompatActivity implements ExampleAdapter.On
         });
         mRequestQueue.add(request);
     }
+
     @Override
     public void onItemClick(int position) {
         Intent detailIntent = new Intent(this, DetailActivity.class);
         ExampleItem clickedItem = mExampleList.get(position);
-        detailIntent.putExtra(EXTRA_URL, clickedItem.getImageUrl());
         detailIntent.putExtra(EXTRA_CREATOR, clickedItem.getCreator());
         detailIntent.putExtra(EXTRA_LIKES, clickedItem.getLikeCount());
         startActivity(detailIntent);
