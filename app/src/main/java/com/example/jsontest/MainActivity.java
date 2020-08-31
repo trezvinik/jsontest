@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements ExampleAdapter.OnItemClickListener {
     public static final String EXTRA_realName = "realName";
-    public static final String EXTRA_LIKES = "likeCount";
+    public static final String EXTRA_PVNR = "pvNr";
     private RecyclerView mRecyclerView;
     private ExampleAdapter mExampleAdapter;
     private ArrayList<ExampleItem> mExampleList;
@@ -41,18 +41,18 @@ public class MainActivity extends AppCompatActivity implements ExampleAdapter.On
     }
 
     private void parseJSON() {
-        String url = "https://www.lscm.lv/pvs_system/pvs_soft/get_data_geomat.php";
+        String url = "https://www.lscm.lv/pvs_system/pvs_soft/get_data.php";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONArray jsonArray = response.getJSONArray("hits");
+                            JSONArray jsonArray = response.getJSONArray("PVS_BUILDINGS");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject hit = jsonArray.getJSONObject(i);
                                 String realName = hit.getString("realName");
-                                int likeCount = hit.getInt("likes");
-                                mExampleList.add(new ExampleItem(realName, likeCount));
+                                int pvNr = hit.getInt("pvNr");
+                                mExampleList.add(new ExampleItem(realName, pvNr));
                             }
                             mExampleAdapter = new ExampleAdapter(MainActivity.this, mExampleList);
                             mRecyclerView.setAdapter(mExampleAdapter);
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements ExampleAdapter.On
         Intent detailIntent = new Intent(this, DetailActivity.class);
         ExampleItem clickedItem = mExampleList.get(position);
         detailIntent.putExtra(EXTRA_realName, clickedItem.getRealName());
-        detailIntent.putExtra(EXTRA_LIKES, clickedItem.getLikeCount());
+        detailIntent.putExtra(EXTRA_PVNR, clickedItem.getPvNr());
         startActivity(detailIntent);
     }
 }

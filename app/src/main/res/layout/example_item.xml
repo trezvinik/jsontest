@@ -13,15 +13,15 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/text_view_creator"
+            android:id="@+id/text_view_realName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Creator Name"
+            android:text="Real Name"
             android:textColor="@android:color/black"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/text_view_likes"
+            android:id="@+id/text_view_PvNr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Like: " />

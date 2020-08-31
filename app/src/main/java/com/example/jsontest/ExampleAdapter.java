@@ -39,9 +39,9 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     public void onBindViewHolder(ExampleViewHolder holder, int position) {
         ExampleItem currentItem = mExampleList.get(position);
         String realName = currentItem.getRealName();
-        int likeCount = currentItem.getLikeCount();
+        int pvNr = currentItem.getPvNr();
         holder.mTextViewRealName.setText(realName);
-        holder.mTextViewLikes.setText("Likes: " + likeCount);
+        holder.mTextViewPvNr.setText("" + pvNr);
     }
 
     @Override
@@ -51,12 +51,12 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
 
     public class ExampleViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextViewRealName;
-        public TextView mTextViewLikes;
+        public TextView mTextViewPvNr;
 
         public ExampleViewHolder(View itemView) {
             super(itemView);
-            mTextViewRealName = itemView.findViewById(R.id.text_view_creator);
-            mTextViewLikes = itemView.findViewById(R.id.text_view_likes);
+            mTextViewRealName = itemView.findViewById(R.id.text_view_realName);
+            mTextViewPvNr = itemView.findViewById(R.id.text_view_PvNr);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

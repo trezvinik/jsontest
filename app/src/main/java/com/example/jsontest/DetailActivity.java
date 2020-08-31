@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import static com.example.jsontest.MainActivity.EXTRA_realName;
-import static com.example.jsontest.MainActivity.EXTRA_LIKES;
+import static com.example.jsontest.MainActivity.EXTRA_PVNR;
 
 public class DetailActivity extends AppCompatActivity {
     @Override
@@ -16,10 +16,10 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail2);
         Intent intent = getIntent();
         String realName = intent.getStringExtra(EXTRA_realName);
-        int likeCount = intent.getIntExtra(EXTRA_LIKES, 0);
-        TextView textViewRealName = findViewById(R.id.text_view_creator_detail);
-        TextView textViewLikes = findViewById(R.id.text_view_like_detail);
+        int pvNr = intent.getIntExtra(EXTRA_PVNR, 0);
+        TextView textViewRealName = findViewById(R.id.text_view_realName_detail);
+        TextView textViewPvNr = findViewById(R.id.text_view_PvNr_detail);
         textViewRealName.setText(realName);
-        textViewLikes.setText("Likes: " + likeCount);
+        textViewPvNr.setText("" + pvNr);
     }
 }
