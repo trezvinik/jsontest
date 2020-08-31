@@ -6,13 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -21,10 +19,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements ExampleAdapter.OnItemClickListener {
-    public static final String EXTRA_CREATOR = "creatorName";
+    public static final String EXTRA_realName = "realName";
     public static final String EXTRA_LIKES = "likeCount";
     private RecyclerView mRecyclerView;
     private ExampleAdapter mExampleAdapter;
@@ -53,9 +50,9 @@ public class MainActivity extends AppCompatActivity implements ExampleAdapter.On
                             JSONArray jsonArray = response.getJSONArray("hits");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject hit = jsonArray.getJSONObject(i);
-                                String creatorName = hit.getString("user");
+                                String realName = hit.getString("realName");
                                 int likeCount = hit.getInt("likes");
-                                mExampleList.add(new ExampleItem(creatorName, likeCount));
+                                mExampleList.add(new ExampleItem(realName, likeCount));
                             }
                             mExampleAdapter = new ExampleAdapter(MainActivity.this, mExampleList);
                             mRecyclerView.setAdapter(mExampleAdapter);
@@ -77,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements ExampleAdapter.On
     public void onItemClick(int position) {
         Intent detailIntent = new Intent(this, DetailActivity.class);
         ExampleItem clickedItem = mExampleList.get(position);
-        detailIntent.putExtra(EXTRA_CREATOR, clickedItem.getCreator());
+        detailIntent.putExtra(EXTRA_realName, clickedItem.getRealName());
         detailIntent.putExtra(EXTRA_LIKES, clickedItem.getLikeCount());
         startActivity(detailIntent);
     }

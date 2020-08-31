@@ -1,16 +1,16 @@
 package com.example.jsontest;
 
 public class ExampleItem {
-    private String mCreator;
+    private String mRealName;
     private int mLikes;
 
-    public ExampleItem(String creator, int likes) {
-        mCreator = creator;
+    public ExampleItem(String realName, int likes) {
+        mRealName = realName;
         mLikes = likes;
     }
 
-    public String getCreator() {
-        return mCreator;
+    public String getRealName() {
+        return mRealName;
     }
 
     public int getLikeCount() {

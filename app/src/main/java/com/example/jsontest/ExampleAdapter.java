@@ -4,14 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -43,9 +38,9 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     @Override
     public void onBindViewHolder(ExampleViewHolder holder, int position) {
         ExampleItem currentItem = mExampleList.get(position);
-        String creatorName = currentItem.getCreator();
+        String realName = currentItem.getRealName();
         int likeCount = currentItem.getLikeCount();
-        holder.mTextViewCreator.setText(creatorName);
+        holder.mTextViewRealName.setText(realName);
         holder.mTextViewLikes.setText("Likes: " + likeCount);
     }
 
@@ -55,12 +50,12 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
     }
 
     public class ExampleViewHolder extends RecyclerView.ViewHolder {
-        public TextView mTextViewCreator;
+        public TextView mTextViewRealName;
         public TextView mTextViewLikes;
 
         public ExampleViewHolder(View itemView) {
             super(itemView);
-            mTextViewCreator = itemView.findViewById(R.id.text_view_creator);
+            mTextViewRealName = itemView.findViewById(R.id.text_view_creator);
             mTextViewLikes = itemView.findViewById(R.id.text_view_likes);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
